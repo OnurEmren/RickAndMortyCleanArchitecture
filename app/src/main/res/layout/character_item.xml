@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.onuremren.breakingbadapp.model.Character" />
+
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:padding="3dp">
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:fontFamily="@font/robot_medium"
+                android:textColor="@color/white"
+                android:text="@{character.name}"
+                android:textSize="20sp"
+                android:textStyle="bold">
+
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/robot_medium"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:text="@{character.status}"
+                android:textSize="16sp">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/liveChar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_sports_baseball_24">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/unknownChar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/deadChar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_red">
+
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
