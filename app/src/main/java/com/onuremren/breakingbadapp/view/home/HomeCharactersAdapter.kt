@@ -52,7 +52,7 @@ class HomeCharactersAdapter(
 
 
         holder.binding.imageView.loadWithGlide(holder.binding.character?.image)
-
+//old nav
     }
 
     class ViewHolder(val binding: CharacterItemBinding, onItemClicked: (Int) -> Unit) :
