@@ -24,6 +24,7 @@ import com.onuremren.breakingbadapp.R
 import com.onuremren.breakingbadapp.core.base.BaseFragment
 import com.onuremren.breakingbadapp.core.util.exhaustive
 import com.onuremren.breakingbadapp.databinding.FragmentHomeBinding
+import com.onuremren.breakingbadapp.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -54,16 +55,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,
         viewModel.listCharactersInEpisode.observe(viewLifecycleOwner) {
             homeCharactersAdapter.submitList(it)
         }
-
-        viewModel.isFilter.observe(viewLifecycleOwner) {
-           // binding.txtReset.visibility = if (it) View.VISIBLE else View.INVISIBLE
-        }
-
-//        binding.txtReset.setOnClickListener {
-//            viewModel.refreshAll()
-//            viewModel.filterValue.value = arrayOf(0, 0)
-//
-//        }
 
 
         getNameSearchView()
@@ -131,7 +122,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,
 
     override fun init() {
         setupAdapter()
-        //getNameSearchView()
         viewModel.process(HomeViewModel.HomeViewEvent.IdleState)
 
     }
@@ -157,15 +147,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,
     }
 
 
-    private fun navigateToDetail(charId: Int) {
-//        val directions = HomeFragmentDirections.actionHomeFragmentToDetailFragment(charId)
-//        navigateTo(directions)
+    private fun navigateToDetail(char:com.onuremren.breakingbadapp.model.Character, origin: Location, charId: Int) {
+        val directions = HomeFragmentDirections.actionHomeFragmentToDetailFragment(char,origin,charId)
+        navigateTo(directions)
     }
 
 
     override fun renderViewEffect(viewEffect: HomeViewModel.HomeViewEffect) {
         when (viewEffect) {
-            is HomeViewModel.HomeViewEffect.GoToDetailPage -> navigateToDetail(viewEffect.charId)
+            is HomeViewModel.HomeViewEffect.GoToDetailPage -> navigateToDetail(viewEffect.char,viewEffect.origin,viewEffect.charId)
         }.exhaustive
     }
 

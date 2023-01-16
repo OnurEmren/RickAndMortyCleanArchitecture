@@ -7,6 +7,7 @@ import com.onuremren.breakingbadapp.core.util.exhaustive
 import com.onuremren.breakingbadapp.di.DispatchersProvider
 import com.onuremren.breakingbadapp.model.Character
 import com.onuremren.breakingbadapp.model.CharacterList
+import com.onuremren.breakingbadapp.model.Location
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -100,8 +101,8 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    private fun itemClicked(charId: com.onuremren.breakingbadapp.model.Character) {
-        viewEffect = HomeViewEffect.GoToDetailPage(charId.id)
+    private fun itemClicked(char: com.onuremren.breakingbadapp.model.Character,origin: Location, charId: com.onuremren.breakingbadapp.model.Character) {
+        viewEffect = HomeViewEffect.GoToDetailPage(char,origin,charId.id)
     }
 
 
@@ -109,7 +110,7 @@ class HomeViewModel @Inject constructor(
         super.process(viewEvent)
         when (viewEvent) {
             is HomeViewEvent.GetAllChar -> fetchChar()
-            is HomeViewEvent.ClickToItem -> itemClicked(viewEvent.item)
+            is HomeViewEvent.ClickToItem -> itemClicked(viewEvent.item,viewEvent.item.origin,viewEvent.item)
             is HomeViewEvent.IdleState -> observeState()
             is HomeViewEvent.RefreshAll -> refreshAll()
 
@@ -131,7 +132,7 @@ class HomeViewModel @Inject constructor(
         )
 
     sealed class HomeViewEffect {
-        data class GoToDetailPage(val charId: Int) : HomeViewEffect()
+        data class GoToDetailPage(val char: com.onuremren.breakingbadapp.model.Character,val origin: Location,val charId: Int) : HomeViewEffect()
     }
 
 

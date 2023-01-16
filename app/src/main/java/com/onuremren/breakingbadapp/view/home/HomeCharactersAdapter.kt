@@ -52,10 +52,6 @@ class HomeCharactersAdapter(
 
 
         holder.binding.imageView.loadWithGlide(holder.binding.character?.image)
-        holder.itemView.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(currentItem,currentItem.location,position)
-            Navigation.findNavController(it).navigate(action)
-        }
 
     }
 

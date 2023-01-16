@@ -26,6 +26,7 @@ abstract class BaseFragment<VB : ViewBinding, STATE, EFFECT, EVENT, ViewModel : 
 
     //Bu kod parçası, bir sınıfın renderViewState() metodunu tanımlar.
     //Bu metodun içinde, bir View nesnesinin görünümü değiştirilebilir.
+    //Uygulamadaki tüm fragmentlarda uygulanmasını istediğimiz için abstract olarak tanımlıyoruz.
     abstract fun renderViewState(viewState: STATE)
 
     //renderViewEffect() metodu, bir View nesnesinin davranışını değiştirmek için kullanılır.
